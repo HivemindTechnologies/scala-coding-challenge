@@ -96,4 +96,5 @@ Ideally it should run independent on the platform and not require a big machine.
 - You should solve this exercise as if you would solve a problem at work, writing code that will run in production.
 - Parts of this exercise and its requirements are unclear, left out or ambiguous on purpose. We want to see how you tackle that and also want to allow a variety of solutions.
 - Please explicitly note any assumptions that you make.
+- The choice of libraries and framework is on purpose completely up to you. But keep in mind that at Hivemind we place a high value on purely functional programming and would appreciate your code adhering to that.  
 - If you are getting stuck and unable to proceed with the exercise, or if you have any other questions, don't hesitate to contact us.
