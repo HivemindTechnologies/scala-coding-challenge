@@ -21,23 +21,39 @@ review_data_path_large = r"C:\Users\ianms\repo\scala-coding-challenge\resources\
 
 start = "01.01.2010"
 end = "31.12.2020"
+min_num_reviews = 2
 
 
-def read(line):
-    return json.loads(line)
+def read(string):
+    """Converts a line from a new-line delimited json, which is read as a string, to a json object"""
+    return json.loads(string)
 
 def time_filter(line):
-    return read(line)['unixReviewTime'] >= date_str_to_unix_time(start) and read(line)['unixReviewTime'] <= date_str_to_unix_time(end)
-
+    """Excludes data outside of the 'start' and 'end' date range"""
+    return line['unixReviewTime'] >= date_str_to_unix_time(start) and line['unixReviewTime'] <= date_str_to_unix_time(end)
 
 def date_str_to_unix_time(date_string):
     return int(datetime.datetime.strptime(date_string, "%d.%m.%Y").timestamp())
 
-if __name__ == '__main__':
-    f = open(review_data_path)
-    f_large = open(review_data_path_large)
-    data = map(read, filter(time_filter, f))
+def review_count_filter(line):
+    return sum(list(map(lambda row: line['asin'] == row['asin'], get_data()))) >= min_num_reviews
 
+def get_data():
+    f = open(review_data_path)
+    data = map(read, f)
+    return map(pass_line, filter(time_filter, data)) # time filtered data
+
+def pass_line(line):
+    return line
+
+if __name__ == '__main__':
+    review_totals = list(map(review_count_filter, get_data()))
+
+    time_and_review_count_filtered_data = list(map(pass_line, filter(review_count_filter, get_data())))
+
+    # data = map(read, filter(time_filter, f))
+    f_large = open(review_data_path_large)
+    data_large = map(get_data(), filter(time_filter, f_large))
 
 
 
