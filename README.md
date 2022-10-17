@@ -1,3 +1,12 @@
+# Solution Notes
+
+
+Conclusion: Experimentally confirmed that using Python map()
+function can process json data without loading fully into memory,
+and is a functional programming syle. The map object size is independent
+of input file size, since map() can load items on demand.
+
+
 # Scala coding challenge - Amazon reviews
 
 Amazons online-shop is well known for its review system. Customers can write [reviews](https://www.amazon.com/Legend-Zelda-Links-Awakening-game-boy/dp/B00002ST3U?th=1#customerReviews) for products and rate them with stars from 1 to 5. Customer reviews themselves can be rated as helpful or not helpful by other customers.
