@@ -8,7 +8,7 @@ from functools import reduce
 # 5 KB file
 review_data_path = r"C:\Users\ianms\repo\scala-coding-challenge\resources\video_game_reviews_example.json"
 # 584 KB file
-review_data_path_large = r"C:\Users\ianms\repo\scala-coding-challenge\resources\video_game_reviews_example_large.json"
+review_data_path_large = r"C:\Users\ianms\repo\scala-coding-challenge\resources\amazon-reviews.json"
 
 # POST /amazon/best-rated HTTP/1.1
 # Host: localhost:8080
