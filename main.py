@@ -7,11 +7,12 @@ from flask import Flask, request
 import requests
 
 class TopAmazonReviews:
-    def __init__(self, start, end, limit, min_number_reviews):
+    def __init__(self, start, end, limit, min_number_reviews, review_data_path):
         self.start = start
         self.end = end
         self.limit = limit
         self.min_number_reviews = min_number_reviews
+        self.review_data_path = review_data_path
 
     def read(self, string):
         """Converts a line from a new-line delimited json, which is read as a string, to a json object"""
@@ -42,19 +43,6 @@ class TopAmazonReviews:
             return False
         else:
             return True
-
-    def calculate_rating_sum(self, static_line):
-
-        def identity_tester(moving_line):
-            if moving_line['asin'] == static_line['asin']:
-                return True
-            else:
-                return False
-
-        def sum_overall(a, b):
-            return a['overall'] + b['overall']
-
-        return {static_line['asin']: reduce(sum_overall, filter(identity_tester, self.get_time_and_review_count_filtered_data()))}
 
     def calculate_rating_avgs(self, static_line):
 
@@ -90,7 +78,7 @@ class TopAmazonReviews:
 
 
     def get_time_filtered_data(self):
-        f = open(review_data_path)
+        f = open(self.review_data_path)
         data = map(self.read, f)
         return map(self.pass_line, filter(self.time_filter, data)) # time filtered data
 
@@ -115,7 +103,7 @@ def main(data):
     end = data['end']
     limit = data['limit']
     min_number_reviews = data['min_number_reviews']
-    x = TopAmazonReviews(start, end, limit, min_number_reviews)
+    x = TopAmazonReviews(start, end, limit, min_number_reviews, review_data_path)
 
     return reduce(x.find_top_rated_avgs, x.get_rating_avgs(), [])
 
@@ -128,21 +116,15 @@ def best_rated_products_endpoint():
 if __name__ == '__main__':
     # 5 KB file
     review_data_path = r"C:\Users\ianms\repo\scala-coding-challenge\resources\video_game_reviews_example.json"
-    # 584 KB file
+    # 874,059 KB file
     review_data_path_large = r"C:\Users\ianms\repo\scala-coding-challenge\resources\amazon-reviews.json"
+    review_data_path = review_data_path_large
+
+    data = {"start":"01.01.2010", "end":"31.12.2020", "limit":2, "min_number_reviews":2}
+    main(data)
+
 
     app.run(host='0.0.0.0', port=8080)
-    # POST / amazon / best - rated HTTP / 1.1
-    Host = 'localhost:8080'
-    Content_Type = 'application/json'
-
-    input_json = {
-        "start": "01.01.2010",
-        "end": "31.12.2020",
-        "limit": 2,
-        "min_number_reviews": 2
-    }
-# curl -iX POST -H 'Content-Type: application/json' -d '{"start":"01.01.2010", "end":"31.12.2020", "limit":2, "min_number_reviews":2}' http://localhost:8080/amazon/best-rated%20HTTP/1.1
 
 
 
