@@ -70,14 +70,14 @@ class TopAmazonReviews:
         def sum_overall(a, b):
             return a + b['overall']
 
-        return {static_line['asin']: reduce(sum_overall, filter(identity_tester, self.get_time_and_review_count_filtered_data()), 0) / reduce(count_overall, filter(identity_tester, self.get_time_and_review_count_filtered_data()), 0)}
+        return {"asin": static_line['asin'], "average_rating": reduce(sum_overall, filter(identity_tester, self.get_time_and_review_count_filtered_data()), 0) / reduce(count_overall, filter(identity_tester, self.get_time_and_review_count_filtered_data()), 0)}
 
     def find_top_rated_avgs(self, top_avgs_list, static_line):
 
         def compare_avgs(highest_avg, current_avg):
             if highest_avg in top_avgs_list: # exclude top avgs already found
                 return current_avg
-            if list(current_avg.values())[0] > list(highest_avg.values())[0] and current_avg not in top_avgs_list:
+            if current_avg["average_rating"] > highest_avg["average_rating"] and current_avg not in top_avgs_list:
                 return current_avg
             else:
                 return highest_avg
@@ -88,7 +88,6 @@ class TopAmazonReviews:
         else:
             return top_avgs_list + [reduce(compare_avgs, self.get_rating_avgs())]
 
-        # return {asin, avg_desc}
 
     def get_time_filtered_data(self):
         f = open(review_data_path)
