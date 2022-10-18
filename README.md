@@ -1,3 +1,9 @@
+# How to use
+
+- steps for installing python and gitbash, virtualenv, pip installing requirements, activating env, navigating to directory, using cmd and gitbash
+- run `python main.py` from cmd
+- run `curl -iX POST -H 'Content-Type: application/json' -d '{"start":"01.01.2010", "end":"31.12.2020", "limit":2, "min_number_reviews":2}' http://localhost:8080/amazon/best-rated%20HTTP/1.1` from gitbash
+- the curl will provide the results. The inputs can be modified by changing the input values in the curl POST request
 # Solution Notes
 
 
