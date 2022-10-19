@@ -15,6 +15,41 @@ class TopAmazonReviews:
         self.min_number_reviews = min_number_reviews
         self.review_data_path = review_data_path
 
+    _initial_missing = object()
+
+    def custom_reduce(self, function, sequence, break_condition, initial=_initial_missing):
+        """
+        break_condition: if the accumulating value ever equals break condition, the function returns break_condition
+        MODIFIED to break if cumulative value matches a condition
+        reduce(function, iterable[, initial]) -> value
+
+        Apply a function of two arguments cumulatively to the items of a sequence
+        or iterable, from left to right, so as to reduce the iterable to a single
+        value.  For example, reduce(lambda x, y: x+y, [1, 2, 3, 4, 5]) calculates
+        ((((1+2)+3)+4)+5).  If initial is present, it is placed before the items
+        of the iterable in the calculation, and serves as a default when the
+        iterable is empty.
+        """
+
+        _initial_missing = object()
+        it = iter(sequence)
+
+        if initial is _initial_missing:
+            try:
+                value = next(it)
+            except StopIteration:
+                raise TypeError(
+                    "reduce() of empty iterable with no initial value") from None
+        else:
+            value = initial
+
+        for element in it:
+            value = function(value, element)
+            if value == break_condition:
+                break
+
+        return value
+
     def read(self, string):
         """Converts a line from a new-line delimited json, which is read as a string, to a json object"""
         return json.loads(string)
@@ -30,17 +65,17 @@ class TopAmazonReviews:
 
         def line_scanner(count, moving_line): # potentially add functionality that breaks function as soon as first True occurs
             if type(count) == bool:
-                return True
+                return 'True'
             if count == self.min_number_reviews:
-                return True
+                return 'True'
             if moving_line['asin'] == static_line['asin']:
                 if count + 1 == self.min_number_reviews:
-                    return True
+                    return 'True'
                 return count + 1
             else:
                 return count
 
-        if type(reduce(line_scanner, self.get_time_filtered_data(), 0)) == int:
+        if type(self.custom_reduce(line_scanner, self.get_time_filtered_data(), 'True', initial=0)) == int:
             return False
         else:
             return True
@@ -100,6 +135,7 @@ class TopAmazonReviews:
 app = Flask(__name__)
 
 def main(data):
+    review_data_path = sys.argv[1]
     start = data['start']
     end = data['end']
     limit = data['limit']
@@ -115,7 +151,7 @@ def best_rated_products_endpoint():
 
 
 if __name__ == '__main__':
-    review_data_path = sys.argv[1]
+
 
     # data = {"start":"01.01.2010", "end":"31.12.2020", "limit":2, "min_number_reviews":2}
     # main(data)

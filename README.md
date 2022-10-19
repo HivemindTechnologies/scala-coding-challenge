@@ -34,8 +34,13 @@
 - Voila! You should get the results you expect
 - The curl will provide the results. The inputs can be modified by changing the input values in the curl POST request
 
-# Solution Notes
+# Testing
+- This is a continuation of the "How to Use" section, please follow those instructions in order to set up and activate your virtual environment
+- Return to cmd
+- Enter `python test.py C:\repo\scala-coding-challenge\resources\video_game_reviews_example.json`
+- You will get a message stating everything has passed if all is well!
 
+# Solution Notes
 
 Conclusion: Experimentally confirmed that using Python map()
 function can process json data without loading fully into memory,
