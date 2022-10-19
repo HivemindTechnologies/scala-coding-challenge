@@ -4,6 +4,7 @@ from sys import getsizeof
 import datetime
 from functools import reduce
 from flask import Flask, request
+import sys
 
 
 class TopAmazonReviews:
@@ -114,15 +115,10 @@ def best_rated_products_endpoint():
 
 
 if __name__ == '__main__':
-    # 5 KB file
-    review_data_path = r"C:\Users\ianms\repo\scala-coding-challenge\resources\video_game_reviews_example.json"
-    # 874,059 KB file
-    review_data_path_large = r"C:\Users\ianms\repo\scala-coding-challenge\resources\amazon-reviews.json"
-    review_data_path = review_data_path_large
+    review_data_path = sys.argv[1]
 
-    data = {"start":"01.01.2010", "end":"31.12.2020", "limit":2, "min_number_reviews":2}
-    main(data)
-
+    # data = {"start":"01.01.2010", "end":"31.12.2020", "limit":2, "min_number_reviews":2}
+    # main(data)
 
     app.run(host='0.0.0.0', port=8080)
 

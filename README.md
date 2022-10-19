@@ -25,7 +25,8 @@
 - Returning to cmd, enter `cd C:\repo\scala-coding-challenge`
 - Enter `pip install -r requirements.txt` 
 - This installs Flask, needed for the webservice
-- Enter `python main.py`
+- Enter `python main.py C:\repo\scala-coding-challenge\resources\video_game_reviews_example.json`
+- The python script takes the json file path as a parameter, you may change it as you please
 - You may have to allow firewall access if prompted
 - You have just started a server listening on localhost:8080
 - Return to Gitbash
