@@ -4,7 +4,7 @@ from sys import getsizeof
 import datetime
 from functools import reduce
 from flask import Flask, request
-import requests
+
 
 class TopAmazonReviews:
     def __init__(self, start, end, limit, min_number_reviews, review_data_path):

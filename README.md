@@ -1,9 +1,38 @@
+# Assumptions
+- Program runs on Windows 10
+
 # How to use
 
 - steps for installing python and gitbash, virtualenv, pip installing requirements, activating env, navigating to directory, using cmd and gitbash
-- run `python main.py` from cmd
-- run `curl -iX POST -H 'Content-Type: application/json' -d '{"start":"01.01.2010", "end":"31.12.2020", "limit":2, "min_number_reviews":2}' http://localhost:8080/amazon/best-rated%20HTTP/1.1` from gitbash
-- the curl will provide the results. The inputs can be modified by changing the input values in the curl POST request
+- Create a directory named "Python310" in C:\
+- Download Python 3.10.8 from https://www.python.org/downloads/
+- While installing Python, install it in C:\Python310
+- Download Gitbash from https://gitforwindows.org/
+- Open "cmd" from the Windows search bar
+- Enter `cd C:\Python310\Scripts`
+- Enter `where pip` to ensure that pip lives in the same directory you are in
+- Enter `pip.exe install virtualenv==20.16.5`
+- Enter `virtualenv.exe C:\env\scala-coding-challenge`
+- Enter `cd C:\env\scala-coding-challenge\Scripts`
+- Enter `activate`
+- You are now using an isolated Python environment
+- Create a directory named "repo" in C:\
+- Don't close cmd, you'll need it later
+- Open Gitbash
+- Enter `cd C:\repo`
+- Enter `git clone https://github.com/ianmsloop/scala-coding-challenge.git`
+- This will create a copy of my solution in "C:\repo\scala-coding-challenge"
+- Returning to cmd, enter `cd C:\repo\scala-coding-challenge`
+- Enter `pip install -r requirements.txt` 
+- This installs Flask, needed for the webservice
+- Enter `python main.py`
+- You may have to allow firewall access if prompted
+- You have just started a server listening on localhost:8080
+- Return to Gitbash
+- Enter `curl -iX POST -H 'Content-Type: application/json' -d '{"start":"01.01.2010", "end":"31.12.2020", "limit":2, "min_number_reviews":2}' http://localhost:8080/amazon/best-rated%20HTTP/1.1` from gitbash
+- Voila! You should get the results you expect
+- The curl will provide the results. The inputs can be modified by changing the input values in the curl POST request
+
 # Solution Notes
 
 
