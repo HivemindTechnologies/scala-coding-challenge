@@ -1,5 +1,10 @@
 # Assumptions
 - Program runs on Windows 10
+- Experimentally confirmed that using Python map()
+function can process json data without loading fully into memory,
+and is a functional programming syle. The map object size is independent
+of input file size, since map() can load items on demand.
+- Order of lines in json file is constant
 
 # How to use
 
@@ -39,14 +44,6 @@
 - Return to cmd
 - Enter `python test.py C:\repo\scala-coding-challenge\resources\video_game_reviews_example.json`
 - You will get a message stating everything has passed if all is well!
-
-# Solution Notes
-
-Conclusion: Experimentally confirmed that using Python map()
-function can process json data without loading fully into memory,
-and is a functional programming syle. The map object size is independent
-of input file size, since map() can load items on demand.
-
 
 # Scala coding challenge - Amazon reviews
 

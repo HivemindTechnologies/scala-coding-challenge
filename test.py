@@ -1,4 +1,4 @@
-import amazon_reviews
+import amazon_top_reviews
 import sys
 
 def test_sorting():
@@ -7,7 +7,7 @@ def test_sorting():
         review_data_path = sys.argv[1]
     except IndexError:
         raise IndexError('Please provide a file path directory for the json with the amazon review data')
-    results = amazon_reviews.main(data)
+    results = amazon_top_reviews.main(data)
     assert results == [{"asin": "B000JQ0JNS", "average_rating":4.5}, {"asin": "B000NI7RW8", "average_rating":3.6666666666666665}], 'Results do not match expected results'
 
 
