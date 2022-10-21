@@ -1,6 +1,4 @@
-import json_stream
 import json
-from sys import getsizeof
 import datetime
 from functools import reduce
 from flask import Flask, request
@@ -106,12 +104,10 @@ class TopAmazonReviews:
             else:
                 return highest_avg
 
-
         if len(top_avgs_list) == self.limit:
             return top_avgs_list
         else:
             return top_avgs_list + [reduce(compare_avgs, self.get_rating_avgs())]
-
 
     def get_time_filtered_data(self):
         f = open(self.review_data_path)
@@ -126,10 +122,6 @@ class TopAmazonReviews:
 
     def get_rating_avgs(self):
         return map(self.calculate_rating_avgs, self.get_time_and_review_count_filtered_data()) # rating avg
-
-
-    def de_dupicate(self, unique_list, moving_line):
-        return unique_list + [moving_line] if not moving_line in unique_list else unique_list
 
 
 app = Flask(__name__)
@@ -149,13 +141,7 @@ def best_rated_products_endpoint():
     data = request.get_json()
     return main(data)
 
-
 if __name__ == '__main__':
-
-
-    # data = {"start":"01.01.2010", "end":"31.12.2020", "limit":2, "min_number_reviews":2}
-    # main(data)
-
     app.run(host='0.0.0.0', port=8080)
 
 
