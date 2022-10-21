@@ -3,19 +3,26 @@
 - Experimentally confirmed that using Python map()
 function can process json data without loading fully into memory,
 and is a functional programming style. The map object size is independent
-of input file size, since map() can load items on demand.
+of input file size, since map() can load items on demand. It streams data,
+only loading one json line into memory at a time
 - Order of lines in json file is constant
 - If two different products have exactly the same average rating, the product that is returned is random,
 based on which product the script accumulated first. The average "helpful" field could be used as a tiebreaker,
-but will have the same issue if the average "helpful" field for both is identical.
+but will have the same issue if the average "helpful" field for both is identical
+- Python is not optimized for speed while using a functional style
+- Python function calls are slow
+- Python recursion hits a default recursion depth of 1000 before returning stack overflow error
+- The result of 3.6666666666666665 is not significantly different from the expected value of 3.666666666666666666666666666666667
+to justify numerical operators to reconcile the round-up and round-down errors.
+
 
 # How to use
 
-- steps for installing python and gitbash, virtualenv, pip installing requirements, activating env, navigating to directory, using cmd and gitbash
+- Steps for installing python and GitBash, virtualenv, pip installing requirements, activating env, navigating to directory, using cmd and GitBash:
 - Create a directory named "Python310" in C:\
 - Download Python 3.10.8 from https://www.python.org/downloads/
 - While installing Python, install it in C:\Python310
-- Download Gitbash from https://gitforwindows.org/
+- Download GitBash from https://gitforwindows.org/
 - Open "cmd" from the Windows search bar
 - Enter `cd C:\Python310\Scripts`
 - Enter `where pip` to ensure that pip lives in the same directory you are in
@@ -26,10 +33,11 @@ but will have the same issue if the average "helpful" field for both is identica
 - You are now using an isolated Python environment
 - Create a directory named "repo" in C:\
 - Don't close cmd, you'll need it later
-- Open Gitbash
+- Open GitBash
 - Enter `cd C:\repo`
 - Enter `git clone https://github.com/ianmsloop/scala-coding-challenge.git`
 - This will create a copy of my solution in "C:\repo\scala-coding-challenge"
+- You might need to enter `git checkout dev` to switch to the branch with the most up-to-date changes
 - Returning to cmd, enter `cd C:\repo\scala-coding-challenge`
 - Enter `pip install -r requirements.txt` 
 - This installs Flask, needed for the webservice
@@ -37,8 +45,8 @@ but will have the same issue if the average "helpful" field for both is identica
 - The python script takes the json file path as a parameter, you may change it as you please
 - You may have to allow firewall access if prompted
 - You have just started a server listening on localhost:8080
-- Return to Gitbash
-- Enter `curl -iX POST -H 'Content-Type: application/json' -d '{"start":"01.01.2010", "end":"31.12.2020", "limit":2, "min_number_reviews":2}' http://localhost:8080/amazon/best-rated%20HTTP/1.1` from gitbash
+- Return to GitBash
+- Enter `curl -iX POST -H 'Content-Type: application/json' -d '{"start":"01.01.2010", "end":"31.12.2020", "limit":2, "min_number_reviews":2}' http://localhost:8080/amazon/best-rated%20HTTP/1.1`
 - Voila! You should get the results you expect
 - The curl will provide the results. The inputs can be modified by changing the input values in the curl POST request
 
@@ -46,7 +54,7 @@ but will have the same issue if the average "helpful" field for both is identica
 - This is a continuation of the "How to Use" section, please follow those instructions in order to set up and activate your virtual environment
 - Return to cmd
 - Enter `python test.py C:\repo\scala-coding-challenge\resources\video_game_reviews_example.json`
-- You will get a message stating everything has passed if all is well!
+- You will get a message stating everything has passed if all is well! Otherwise, please inspect the given errors
 
 # Scala coding challenge - Amazon reviews
 
