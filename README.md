@@ -2,9 +2,12 @@
 - Program runs on Windows 10
 - Experimentally confirmed that using Python map()
 function can process json data without loading fully into memory,
-and is a functional programming syle. The map object size is independent
+and is a functional programming style. The map object size is independent
 of input file size, since map() can load items on demand.
 - Order of lines in json file is constant
+- If two different products have exactly the same average rating, the product that is returned is random,
+based on which product the script accumulated first. The average "helpful" field could be used as a tiebreaker,
+but will have the same issue if the average "helpful" field for both is identical.
 
 # How to use
 
