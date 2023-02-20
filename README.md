@@ -1,5 +1,16 @@
-# Scala coding challenge - Amazon reviews
+# Scala coding challenge
 
+As a consultancy company Hivemind builds software based on customers requirements.
+Imagine the description below to be the requirements of a customer project. Before handing over the code to the customer we usually do code reviews. Therefore, be ready to guide us through your solution. You should also make sure that your solution meets production quality standards.
+You are free to define your own standards but please make sure that you can explain them. 
+
+Parts of this exercise and its requirements are unclear, left out or ambiguous on purpose.  
+Some reasons are: 
+- Most projects have unclear requirements 
+- We want to see how you tackle that and also want to allow a variety of solutions
+
+
+## Amazon reviews
 Amazons online-shop is well known for its review system. Customers can write [reviews](https://www.amazon.com/Legend-Zelda-Links-Awakening-game-boy/dp/B00002ST3U?th=1#customerReviews) for products and rate them with stars from 1 to 5. Customer reviews themselves can be rated as helpful or not helpful by other customers.
 
 Your task is to create a web service that provides an API that takes certain kind of requests and uses the reviews to provide helpful responses.
@@ -85,16 +96,15 @@ When working with the [test data](/resources/video_game_reviews_example.json) a 
 - The path to the file should be configurable
 - Keep in mind that the file might be too large to fit into memory
 
-## Running your service
+## Running the service
 
 We will run your service and see if it does what it is expected to do.
-Please make sure to give us some instructions about how we can run it so that it works for us.
+Please make sure to give us some instructions about how we can run it on our machines.
 Ideally it should run independent on the platform and not require a big machine.
 
 ## Tips
-
-- You should solve this exercise as if you would solve a problem at work, writing code that will run in production.
-- Parts of this exercise and its requirements are unclear, left out or ambiguous on purpose. We want to see how you tackle that and also want to allow a variety of solutions.
+- If you are getting stuck and unable to proceed with the exercise, or if you have any other questions, don't hesitate to contact us. Communication is key.
 - Please explicitly note any assumptions that you make.
-- The choice of libraries and framework is on purpose completely up to you. But keep in mind that at Hivemind we place a high value on purely functional programming and would appreciate your code adhering to that.  
-- If you are getting stuck and unable to proceed with the exercise, or if you have any other questions, don't hesitate to contact us.
+- The choice of libraries and framework is on purpose completely up to you. 
+- Keep in mind that we place a high value on purely functional programming and would appreciate your code adhering to that. We strongly believe that pure FP solutions lead to more readable code.
+- If you plan to choose something else than FP please let us know about your reasoning during your 2nd interview.
