@@ -1,6 +1,6 @@
 # Scala coding challenge
 
-As a consultancy company Hivemind builds software based on customers requirements.
+As a consultancy company Hivemind builds software based on customer requirements.
 Imagine the description below to be the requirements of a customer project. Before handing over the code to the customer we usually do code reviews. Therefore, be ready to guide us through your solution. You should also make sure that your solution meets production quality standards.
 You are free to define your own standards but please make sure that you can explain them. 
 
