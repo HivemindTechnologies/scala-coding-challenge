@@ -105,6 +105,6 @@ Ideally it should run independent on the platform and not require a big machine.
 ## Tips
 - If you are getting stuck and unable to proceed with the exercise, or if you have any other questions, don't hesitate to contact us. Communication is key.
 - Please explicitly note any assumptions that you make.
-- The choice of libraries and framework is on purpose completely up to you. 
+- The choice of libraries and framework is on purpose completely up to you, and these decisions can form a basis of discussion for any further interview.
 - Keep in mind that we place a high value on purely functional programming and would appreciate your code adhering to that. We strongly believe that pure FP solutions lead to more readable code.
 - If you plan to choose something else than FP please let us know about your reasoning during your 2nd interview.
